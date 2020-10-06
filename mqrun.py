@@ -28,13 +28,17 @@ if __name__ == '__main__':
     c.exposure_mode = 'off'
     c.start_preview()
     client = mqtt.Client()
-    client.connect("masterpi.local")
-    p = view()
+    client.connect("10.0.0.4")
+
+    while True:
+
+        p = view()
     
-    # publish brightness
-    brightness = calc_brightness(p)
-    #brightness = round(brightness,4)
-    print(brightness)
-    client.publish("garage/brightness",brightness)
+        # publish brightness
+        brightness = calc_brightness(p)
+        #brightness = round(brightness,4)
+        print(brightness)
+        client.publish("garage/brightness",brightness)
     
-    # publish 
+        # publish 
+        sleep(5)
